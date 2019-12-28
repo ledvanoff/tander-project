@@ -36,7 +36,7 @@ def get_all_comments():
     query = """SELECT * from Comments""" 
     all_comments = execute_db_query(query, fetch_all)
     return all_comments
-    
+
 def delete_by_id(id):
     query = f'DELETE FROM "Comments" WHERE id = {id}'
     try:
@@ -50,4 +50,3 @@ def delete_by_id(id):
 if __name__ == "__main__":
     create_db()
     print(get_all_comments())
-    delete_by_id('7')

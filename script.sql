@@ -24,34 +24,34 @@ INSERT INTO Regions (region_name) SELECT 'Ростовская область' W
 INSERT INTO Regions (region_name) SELECT 'Ставропольский край' WHERE NOT EXISTS(SELECT 1 FROM Regions WHERE region_name = 'Ставропольский край');
 
 INSERT INTO Cities(region_id,city_name) 
-SELECT (SELECT id FROM Regions WHERE region_name = 'Краснодарский край' LIMIT 1), 'Краснодар' 
-WHERE NOT EXISTS(SELECT 1 FROM Cities WHERE id = (SELECT id FROM Regions WHERE region_name = 'Краснодарский край' LIMIT 1) AND city_name = 'Краснодар');
+SELECT (SELECT id FROM Regions WHERE region_name = 'Краснодарский край'), 'Краснодар' 
+WHERE NOT EXISTS(SELECT 1 FROM Cities WHERE region_id = (SELECT id FROM Regions WHERE region_name = 'Краснодарский край') AND city_name = 'Краснодар');
 INSERT INTO Cities(region_id,city_name) 
-SELECT (SELECT id FROM Regions WHERE region_name = 'Краснодарский край' LIMIT 1), 'Кропоткин' 
-WHERE NOT EXISTS(SELECT 1 FROM Cities WHERE id = (SELECT id FROM Regions WHERE region_name = 'Краснодарский край' LIMIT 1) AND city_name = 'Кропоткин');
+SELECT (SELECT id FROM Regions WHERE region_name = 'Краснодарский край'), 'Кропоткин' 
+WHERE NOT EXISTS(SELECT 2 FROM Cities WHERE region_id = (SELECT id FROM Regions WHERE region_name = 'Краснодарский край') AND city_name = 'Кропоткин');
 INSERT INTO Cities(region_id,city_name) 
-SELECT (SELECT id FROM Regions WHERE region_name = 'Краснодарский край' LIMIT 1), 'Славянск' 
-WHERE NOT EXISTS(SELECT 1 FROM Cities WHERE id = (SELECT id FROM Regions WHERE region_name = 'Краснодарский край' LIMIT 1) AND city_name = 'Славянск');
+SELECT (SELECT id FROM Regions WHERE region_name = 'Краснодарский край'), 'Славянск' 
+WHERE NOT EXISTS(SELECT 3 FROM Cities WHERE region_id = (SELECT id FROM Regions WHERE region_name = 'Краснодарский край') AND city_name = 'Славянск');
 
 INSERT INTO Cities(region_id,city_name) 
-SELECT (SELECT id FROM Regions WHERE region_name = 'Ставропольский край' LIMIT 1), 'Ставрополь' 
-WHERE NOT EXISTS(SELECT 1 FROM Cities WHERE id = (SELECT id FROM Regions WHERE region_name = 'Ставропольский край' LIMIT 1) AND city_name = 'Ставрополь');
+SELECT (SELECT id FROM Regions WHERE region_name = 'Ставропольский край'), 'Ставрополь' 
+WHERE NOT EXISTS(SELECT 1 FROM Cities WHERE region_id = (SELECT id FROM Regions WHERE region_name = 'Ставропольский край') AND city_name = 'Ставрополь');
 INSERT INTO Cities(region_id,city_name) 
-SELECT (SELECT id FROM Regions WHERE region_name = 'Ставропольский край' LIMIT 1), 'Пятигорск' 
-WHERE NOT EXISTS(SELECT 1 FROM Cities WHERE id = (SELECT id FROM Regions WHERE region_name = 'Ставропольский край' LIMIT 1) AND city_name = 'Пятигорск');
+SELECT (SELECT id FROM Regions WHERE region_name = 'Ставропольский край'), 'Пятигорск' 
+WHERE NOT EXISTS(SELECT 1 FROM Cities WHERE region_id = (SELECT id FROM Regions WHERE region_name = 'Ставропольский край') AND city_name = 'Пятигорск');
 INSERT INTO Cities(region_id,city_name) 
-SELECT (SELECT id FROM Regions WHERE region_name = 'Ставропольский край' LIMIT 1), 'Кисловодск' 
-WHERE NOT EXISTS(SELECT 1 FROM Cities WHERE id = (SELECT id FROM Regions WHERE region_name = 'Ставропольский край' LIMIT 1) AND city_name = 'Кисловодск');
+SELECT (SELECT id FROM Regions WHERE region_name = 'Ставропольский край'), 'Кисловодск' 
+WHERE NOT EXISTS(SELECT 1 FROM Cities WHERE region_id = (SELECT id FROM Regions WHERE region_name = 'Ставропольский край') AND city_name = 'Кисловодск');
 
 INSERT INTO Cities(region_id,city_name) 
-SELECT (SELECT id FROM Regions WHERE region_name = 'Ростовская область' LIMIT 1), 'Ростов' 
-WHERE NOT EXISTS(SELECT 1 FROM Cities WHERE id = (SELECT id FROM Regions WHERE region_name = 'Ростовская область' LIMIT 1) AND city_name = 'Ростов');
+SELECT (SELECT id FROM Regions WHERE region_name = 'Ростовская область'), 'Ростов' 
+WHERE NOT EXISTS(SELECT 1 FROM Cities WHERE region_id = (SELECT id FROM Regions WHERE region_name = 'Ростовская область') AND city_name = 'Ростов');
 INSERT INTO Cities(region_id,city_name) 
-SELECT (SELECT id FROM Regions WHERE region_name = 'Ростовская область' LIMIT 1), 'Шахты' 
-WHERE NOT EXISTS(SELECT 1 FROM Cities WHERE id = (SELECT id FROM Regions WHERE region_name = 'Ростовская область' LIMIT 1) AND city_name = 'Шахты');
+SELECT (SELECT id FROM Regions WHERE region_name = 'Ростовская область'), 'Шахты' 
+WHERE NOT EXISTS(SELECT 1 FROM Cities WHERE region_id = (SELECT id FROM Regions WHERE region_name = 'Ростовская область') AND city_name = 'Шахты');
 INSERT INTO Cities(region_id,city_name) 
-SELECT (SELECT id FROM Regions WHERE region_name = 'Ростовская область' LIMIT 1), 'Батайск' 
-WHERE NOT EXISTS(SELECT 1 FROM Cities WHERE id = (SELECT id FROM Regions WHERE region_name = 'Ростовская область' LIMIT 1) AND city_name = 'Батайск');
+SELECT (SELECT id FROM Regions WHERE region_name = 'Ростовская область'), 'Батайск' 
+WHERE NOT EXISTS(SELECT 1 FROM Cities WHERE region_id = (SELECT id FROM Regions WHERE region_name = 'Ростовская область') AND city_name = 'Батайск');
 
 
 
