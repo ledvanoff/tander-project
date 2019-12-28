@@ -32,7 +32,7 @@ def execute_db_query(query, executor, db_name=DB_NAME, factory=True):
     return result
 
 def get_all_comments():
-    #query = """SELECT * from Comments""" 
+    #query = """SELECT * from Comments"""
     query = """SELECT Comments.id, last_name, first_name, third_name, phone, email, comment, city_name, region_name FROM Comments INNER JOIN Cities ON Cities.id = Comments.city_id INNER JOIN Regions ON Regions.id = Comments.region_id;""" 
     all_comments = execute_db_query(query, fetch_all)
     return all_comments

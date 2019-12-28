@@ -1,6 +1,7 @@
 import socket
 from urllib import parse
 import json
+import os.path
 from views import *
 from models import *
 
@@ -9,6 +10,7 @@ URLS = {
     '':[index,'GET'],
     '/comment':[comment,'GET'],
     '/view':[view,'GET'],
+    '/static':[static, 'GET'],
     '/test':[test,'GET']
 }
 
@@ -19,10 +21,11 @@ def parse_request(request):
     url = splited_request[1]
     query_params = parse.urlsplit(url).query#парсим запросы из урла
     queries_dict = parse.parse_qs(query_params)
-    print(queries_dict)
     return (method, url)
 
 def generate_headers(method, url):
+    if '/static/' in url and os.path.isfile(url[1:]):
+        return ('HTTP/1.1 200 OK \n\n', 200)
     if not url in URLS:
         return ('HTTP/1.1 404 Not Found\n\n', 404)
     if not method in URLS[url]:
@@ -34,6 +37,8 @@ def generate_content(code, url):
         return '<h1>404</h1><p>Not found</p>'
     if code == 405:
         return '<h1>405</h1><p>Method not allowed</p>'
+    if '/static/' in url:
+        return URLS['/static'][0](url)
     
     
     return URLS[url][0]()
@@ -42,8 +47,10 @@ def generate_response(request):
     method, url = parse_request(request)
     headers, code = generate_headers(method, url)
     body = generate_content(code, url)
-    print()
+
     print('<===Response with code: {}'.format(code))
+    print()
+    print('*'*25)
     return (headers + body).encode()
 
 def run():
@@ -61,10 +68,10 @@ def run():
             continue
         print('===>Request from {} :'.format(client_addr))
         print(request.decode('utf-8'))
-        print('*'*25)
+
 
         response = generate_response(request.decode('utf-8'))
-        print(response)
+        #print(response)
 
         client_socket.sendall(response)#encoding to bytes
         client_socket.close()
