@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>View all comments</title>
+</head>
+<body>
+    <div id="render">
+
+    </div>
+    <script>
+    window.onload = async function() {
+        const resp = await fetch('/test');
+        const parse = await resp.text();
+        const jsonify = JSON.parse(parse);
+        // const genTable = (el)=>{
+        //     const tableStart = "<table><thead><tr>";
+        //     const theadTds = '';
+        //     for (const [key, value] of Object.entries(el[0])) {
+        //         theadTds = theadTds + `<td>${key}</td>`
+        //     }
+        //     const tableHeadEnd = "</tr></thead>"
+        //     const tableBodyStart = "<tbody>"
+        //     const tbodyTds = '';
+        //     for (const [key, value] of Object.entries(el)) {
+        //         tbodyTds = tbodyTds +`<td>${key}</td>`
+        //     }
+        //     const tableBodyEnd = "</tbody>"
+        // }
+
+        ths='';
+
+        for (const [key, value] of Object.entries(jsonify[0])) {
+            ths += `<th>${key}</th>`
+        }
+        let thead = `<tr>${ths}</tr>`;
+
+        let tbody = '';
+
+        jsonify.map((val)=>{
+                let tds =''
+                for (const [key, value] of Object.entries(val)) {
+                    tds += `<td>${value}</td>`
+                }
+                let row = `<tr>${tds}</tr>`
+                console.log(row)
+                tbody+=row
+            });
+
+
+        let table = `<table><thead>${thead}</thead><tbody>${tbody}</tbody></table>`;
+        let renderDiv = document.getElementById('render');
+        renderDiv.innerHTML = table;
+        
+        
+    };
+    
+    
+    </script>
+</body>
+</html>
