@@ -17,9 +17,12 @@ def do_dict_factory(cursor, row):
         d[col[0]] = row[idx]
     return d
 
-def fetch_all(query, executed):
-    records = executed.fetchall()
+def fetch_all(**kwargs):
+    records = kwargs['executed'].fetchall()
     return records
+
+def do_commit(**kwargs):
+    return kwargs['con'].commit()
 
 def execute_db_query(query, executor, db_name=DB_NAME, factory=True):
     con = sqlite3.connect(db_name)
@@ -27,7 +30,7 @@ def execute_db_query(query, executor, db_name=DB_NAME, factory=True):
         con.row_factory = do_dict_factory
     cursor = con.cursor()
     executed = cursor.execute(query)
-    result = executor(query,executed)
+    result = executor(con=con,executed=executed)
     con.close()
     return result
 
@@ -36,3 +39,14 @@ def get_all_comments():
     query = """SELECT Comments.id, last_name, first_name, third_name, phone, email, comment, city_name, region_name FROM Comments INNER JOIN Cities ON Cities.id = Comments.city_id INNER JOIN Regions ON Regions.id = Comments.region_id;""" 
     all_comments = execute_db_query(query, fetch_all)
     return all_comments
+
+def delete_by_id(id):
+    query = f'DELETE FROM "Comments" WHERE id = {id}'
+    try:
+        execute_db_query(query,do_commit)
+        return {'status' : 'ok'}
+    except Exception as e:
+        return {
+            'status' : 'err',
+            'err_text' : str(e)
+        }
