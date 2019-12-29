@@ -1,3 +1,26 @@
+#menu{
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+h1{
+    margin-top: 95px;
+}
+.menu-link{
+    color: white;
+}
+
+.menu-link:hover{
+    background-color: crimson;
+}
+
 .button-success,
 .button-error,
 .button-warning,
