@@ -1,3 +1,12 @@
+.d-none{
+    display: none !important;
+}
+.w100{
+    width: 100%;
+}
+.container{
+    padding: 16px;
+}
 #menu{
     height: 80px;
     display: flex;
@@ -20,7 +29,17 @@ h1{
 .menu-link:hover{
     background-color: crimson;
 }
-
+.error-input{
+    border: 1px solid crimson !important;
+    background-color: rgb(255, 195, 195) !important;
+}
+.error-message{
+    border-radius: 4px;
+    width: 48.5%;
+    margin-top: 10px;
+    background-color: rgb(251, 154, 170);
+    padding: 10px;
+}
 .button-success,
 .button-error,
 .button-warning,

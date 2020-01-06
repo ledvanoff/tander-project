@@ -15,7 +15,7 @@ const createTable = (jsonify)=>{
             let row = `<tr id=tr${val.id}>${tds}</tr>`
             tbody+=row
         });
-    let table = `<table class="pure-table"><thead>${thead}</thead><tbody>${tbody}</tbody></table>`;
+    let table = `<table class="w100 pure-table"><thead>${thead}</thead><tbody>${tbody}</tbody></table>`;
     
     return table
 }

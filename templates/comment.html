@@ -4,11 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="static/libs/pure/pure-min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <title>Add a comment</title>
 </head>
 <body>
-    <a href="/">Home</a>
-    <hr>
-    <h1 style="color: blueviolet;">Comment</h1>
+    <div id="menu"></div>
+    <div class="container">
+        <h1>Add comment</h1>
+        <div id="main-content">
+            <form name="comment" id="comment-form" class="pure-form">
+                <label for="name">Личные данные:</label>
+                <fieldset class="pure-group">
+                    <input name="last-name" id="last-name" type="text" class="pure-input-1-2" placeholder="*Фамилия" required>
+                    <input name="name" id="name" type="text" class="pure-input-1-2" placeholder="*Имя" required>
+                    <input name="patron" id="patron" type="text" class="pure-input-1-2" placeholder="Отчество">
+                    <input name="email" id="email" type="email" class="pure-input-1-2" placeholder="Email, формат example@example.ru">
+                    <input name="phone" id="phone" type="tel" class="pure-input-1-2" placeholder="Телефон, формат +7ххххххххxx" pattern="^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$">
+                </fieldset>
+                <label for="region">Ваше местоположение:</label>
+                <fieldset>
+                    <select name="region" id="region" class="pure-input-1-2">
+                    </select>
+                    <select name="city" id="city" class="pure-input-1-2">
+                    </select>
+                </fieldset>
+                <fieldset class="pure-group">
+                    <textarea name="comment" class="pure-input-1-2" placeholder="*Ваш комментарий" required></textarea>
+                </fieldset>
+            
+                <button type="submit" class="pure-button pure-input-1-2 pure-button-primary">Добавить</button>
+                <div class="error-message d-none"></div>
+            </form>
+
+        </div>
+    </div>
+    <script src="static/js/renderMenu.js"></script>
+    <script src="static/js/comment.js"></script>
 </body>
 </html>

@@ -32,6 +32,16 @@ def test():
     response = get_all_comments()
     return json.dumps(response)
 
+def regions():
+    response = get_regions()
+    return json.dumps(response)
+
+def cities(query):
+    response = get_cities_by_id(query['id'])
+    return json.dumps(response)
+
+def addcomment(query):
+    pass
 
 URLS = {
     '/':[index,'GET'],
@@ -40,7 +50,10 @@ URLS = {
     '/view':[view,'GET'],
     '/static':[static, 'GET'],
     '/test':[test,'GET'],
-    '/delete':[delete_comment,'DELETE']
+    '/delete':[delete_comment,'DELETE'],
+    '/regions':[regions,'GET'],
+    '/cities':[cities, 'POST'],
+    '/addcomment':[addcomment, 'POST']
 }
 
 

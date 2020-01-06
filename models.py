@@ -50,3 +50,26 @@ def delete_by_id(id):
             'status' : 'err',
             'err_text' : str(e)
         }
+
+def get_regions():
+    query = 'SELECT * FROM Regions'
+    regions = execute_db_query(query, fetch_all)
+    return regions
+
+def get_cities_by_id(id):
+    query = f'SELECT id,city_name FROM "Cities" WHERE region_id = {id}'
+    cities = execute_db_query(query, fetch_all)
+    return cities
+
+def add_comment(comment):
+    last_name, first_name, third_name, phone, email, comment, city_id, region_id = comment
+    query = f'INSERT INTO "Comments" ("last_name", "first_name", "third_name", "phone", "email", "comment","city_id","region_id") VALUES ({last_name}, {first_name}, {third_name}, {phone}, {email}, {comment}, {city_id}, {region_id})'
+
+    try:
+        execute_db_query(query,do_commit)
+        return {'status' : 'ok'}
+    except Exception as e:
+        return {
+            'status' : 'err',
+            'err_text' : str(e)
+        }
