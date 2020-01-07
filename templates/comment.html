@@ -16,7 +16,7 @@
             <form name="comment" id="comment-form" class="pure-form">
                 <label for="name">Личные данные:</label>
                 <fieldset class="pure-group">
-                    <input name="last-name" id="last-name" type="text" class="pure-input-1-2" placeholder="*Фамилия" required>
+                    <input name="lastName" id="last-name" type="text" class="pure-input-1-2" placeholder="*Фамилия" required>
                     <input name="name" id="name" type="text" class="pure-input-1-2" placeholder="*Имя" required>
                     <input name="patron" id="patron" type="text" class="pure-input-1-2" placeholder="Отчество">
                     <input name="email" id="email" type="email" class="pure-input-1-2" placeholder="Email, формат example@example.ru">
@@ -35,6 +35,7 @@
             
                 <button type="submit" class="pure-button pure-input-1-2 pure-button-primary">Добавить</button>
                 <div class="error-message d-none"></div>
+                <div class="success-message d-none"></div>
             </form>
 
         </div>

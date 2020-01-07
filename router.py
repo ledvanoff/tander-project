@@ -40,8 +40,9 @@ def cities(query):
     response = get_cities_by_id(query['id'])
     return json.dumps(response)
 
-def addcomment(query):
-    pass
+def addcomment(data):
+    add_status = add_comment(data)
+    return json.dumps(add_status)
 
 URLS = {
     '/':[index,'GET'],

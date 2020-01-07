@@ -62,9 +62,8 @@ def get_cities_by_id(id):
     return cities
 
 def add_comment(comment):
-    last_name, first_name, third_name, phone, email, comment, city_id, region_id = comment
-    query = f'INSERT INTO "Comments" ("last_name", "first_name", "third_name", "phone", "email", "comment","city_id","region_id") VALUES ({last_name}, {first_name}, {third_name}, {phone}, {email}, {comment}, {city_id}, {region_id})'
-
+    query = f'''INSERT INTO "Comments" ("last_name", "first_name", "third_name", "phone", "email", "comment","city_id","region_id") VALUES ("{comment['lastName']}", "{comment['name']}", "{comment['patron']}", "{comment['phone']}", "{comment['email']}", "{comment['comment']}", "{comment['city']}", "{comment['region']}")'''
+    print(query)
     try:
         execute_db_query(query,do_commit)
         return {'status' : 'ok'}

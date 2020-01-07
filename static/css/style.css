@@ -40,6 +40,13 @@ h1{
     background-color: rgb(251, 154, 170);
     padding: 10px;
 }
+.success-message{
+    border-radius: 4px;
+    width: 48.5%;
+    margin-top: 10px;
+    background-color: rgb(158, 255, 198);
+    padding: 10px;
+}
 .button-success,
 .button-error,
 .button-warning,

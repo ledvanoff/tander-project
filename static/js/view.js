@@ -6,7 +6,7 @@ const createTable = (jsonify)=>{
     ths+=`<th>Action</th>`
     let thead = `<tr>${ths}</tr>`;
     let tbody = '';
-    jsonify.map((val)=>{
+    jsonify.reverse().map((val)=>{
             let tds =''
             for (const [key, value] of Object.entries(val)) {
                 tds += `<td>${value}</td>`
