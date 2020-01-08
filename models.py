@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import sqlite3
+from collections import Counter
+
 DB_NAME = 'database.db'
+STAT_LIMIT = 5
 
 def create_db():
     with open('script.sql','r',encoding='utf8') as sql_script:
@@ -35,7 +38,6 @@ def execute_db_query(query, executor, db_name=DB_NAME, factory=True):
     return result
 
 def get_all_comments():
-    #query = """SELECT * from Comments"""
     query = """SELECT Comments.id, last_name, first_name, third_name, phone, email, comment, city_name, region_name FROM Comments INNER JOIN Cities ON Cities.id = Comments.city_id INNER JOIN Regions ON Regions.id = Comments.region_id;""" 
     all_comments = execute_db_query(query, fetch_all)
     return all_comments
@@ -72,3 +74,32 @@ def add_comment(comment):
             'status' : 'err',
             'err_text' : str(e)
         }
+
+def get_all_cities():
+    query = 'SELECT city_name, region_name FROM Cities INNER JOIN Regions ON Regions.id = region_id'
+    all_cities = execute_db_query(query, fetch_all)
+    return all_cities
+
+def get_statistics():
+    cities = get_all_cities()
+    cities_match = {}
+    for city in cities:
+        cities_match[city['city_name']] = city['region_name']
+    comments = get_all_comments()
+    if not comments:
+        return {'warn':'No comments'}
+    all_regions = [comment['region_name'] for comment in comments]
+    regions_stat = Counter(all_regions)
+    all_cities = [comment['city_name'] for comment in comments]
+    cities_stat = Counter(all_cities)
+    statistics = []
+    for k,v in regions_stat.items():
+        if v >= STAT_LIMIT:
+            statistics.append({'region':k,'total':v,'cities':{}})
+    if len(statistics) == 0:
+        return {'warn':'Not enough comments'}
+    for item in statistics:
+        for k,v in cities_stat.items():
+            if cities_match[k] == item['region']:
+                item['cities'][k] = v
+    return statistics

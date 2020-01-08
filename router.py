@@ -1,6 +1,5 @@
 from models import *
 import json
-from urllib import parse
 import os.path
 import re
 
@@ -30,6 +29,7 @@ def delete_comment(query):
     
 def test():
     response = get_all_comments()
+    print(response)
     return json.dumps(response)
 
 def regions():
@@ -44,9 +44,17 @@ def addcomment(data):
     add_status = add_comment(data)
     return json.dumps(add_status)
 
+def stat():
+    return render('stat.html')
+
+def getstat():
+    statistics = get_statistics()
+    return json.dumps(statistics)
+
 URLS = {
     '/':[index,'GET'],
     '':[index,'GET'],
+    '/index':[index,'GET'],
     '/comment':[comment,'GET'],
     '/view':[view,'GET'],
     '/static':[static, 'GET'],
@@ -54,16 +62,15 @@ URLS = {
     '/delete':[delete_comment,'DELETE'],
     '/regions':[regions,'GET'],
     '/cities':[cities, 'POST'],
-    '/addcomment':[addcomment, 'POST']
+    '/addcomment':[addcomment, 'POST'],
+    '/stat':[stat, 'GET'],
+    '/getstat':[getstat, 'GET'],
 }
-
 
 def parse_request(request):
     splited_request = request.split(' ')
     method = splited_request[0]
     url = splited_request[1]
-    # query_params = parse.urlsplit(url).query#парсим запросы из урла
-    # queries_dict = parse.parse_qs(query_params)
     json_query= ''
     regex = re.compile('json_request ({.+})')
     match = regex.search(request)
@@ -98,7 +105,7 @@ def generate_response(request):
     headers, code = generate_headers(method, url)
     body = generate_content(code, url, json_query)
 
-    print('<===Response with code: {}'.format(code))
+    print(f'<===Response with code: {code}')
     print()
     print('*'*25)
     return (headers + body).encode()

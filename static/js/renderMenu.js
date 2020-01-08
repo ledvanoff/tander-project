@@ -5,7 +5,7 @@ const urls = {
     'Home':'/',
     'Add comment':'/comment',
     'View comments':'/view',
-    'Statistics':'#'
+    'Statistics':'/stat'
 }
 const makeMenuItems = (urls)=>{
     let lis = '';

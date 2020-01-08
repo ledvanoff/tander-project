@@ -47,6 +47,23 @@ h1{
     background-color: rgb(158, 255, 198);
     padding: 10px;
 }
+.accordion-toggle {
+    display: block;
+  }
+  
+.accordion-content {
+    display: none;
+  }
+  
+.accordion-content.active {
+    display: block;
+  }
+.cities-info{
+    margin-top: 5px;
+}
+.city-info{
+    padding:5px;
+}
 .button-success,
 .button-error,
 .button-warning,
@@ -57,17 +74,17 @@ h1{
 }
 
 .button-success {
-    background: rgb(28, 184, 65); /* this is a green */
+    background: rgb(28, 184, 65);
 }
 
 .button-error {
-    background: rgb(202, 60, 60); /* this is a maroon */
+    background: rgb(202, 60, 60);
 }
 
 .button-warning {
-    background: rgb(223, 117, 20); /* this is an orange */
+    background: rgb(223, 117, 20);
 }
 
 .button-secondary {
-    background: rgb(66, 184, 221); /* this is a light blue */
+    background: rgb(66, 184, 221);
 }

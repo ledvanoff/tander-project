@@ -14,16 +14,12 @@ def run(ip='localhost', port=5000):
         client_socket, client_addr = server_socket.accept()
         request = client_socket.recv(2048)
         if not request:
-            print('Empty request detected')
+            print('WARN!Empty request detected')
             continue
-        print('===>Request from {} :'.format(client_addr))
+        print(f'===>Request from {client_addr} :')
         print(request.decode('utf-8'))
-
-
         response = generate_response(request.decode('utf-8'))
-        #print(response)
-
-        client_socket.sendall(response)#encoding to bytes
+        client_socket.sendall(response)
         client_socket.close()
 
 if __name__ == "__main__":
