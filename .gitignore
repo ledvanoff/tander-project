@@ -3,3 +3,4 @@ env
 INFO
 .git
 database.db
+test.py

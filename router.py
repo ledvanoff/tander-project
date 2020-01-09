@@ -4,7 +4,7 @@ import os.path
 import re
 
 
-
+#Функции, вызываемые при http запросе:
 def render(template_name):
     with open('templates/{}'.format(template_name),'r',encoding='utf8') as template:
         return template.read()
@@ -25,7 +25,6 @@ def view():
 def delete_comment(query):
     delete_status = delete_by_id(query['id'])
     return json.dumps(delete_status)
-
     
 def test():
     response = get_all_comments()
@@ -51,6 +50,7 @@ def getstat():
     statistics = get_statistics()
     return json.dumps(statistics)
 
+#Словарь соответствий url<->функция + разрешенный Http-метод
 URLS = {
     '/':[index,'GET'],
     '':[index,'GET'],
@@ -66,7 +66,7 @@ URLS = {
     '/stat':[stat, 'GET'],
     '/getstat':[getstat, 'GET'],
 }
-
+#Функция парсинга Http-запроса
 def parse_request(request):
     splited_request = request.split(' ')
     method = splited_request[0]
@@ -77,7 +77,7 @@ def parse_request(request):
     if match:
         json_query = match.group(1)
     return (method, url, json_query)
-
+#Функция, генерирующая Http-заголовки
 def generate_headers(method, url):
     if '/static/' in url and os.path.isfile(url[1:]):
         return ('HTTP/1.1 200 OK \n\n', 200)
@@ -86,7 +86,7 @@ def generate_headers(method, url):
     if not method in URLS[url]:
         return ('HTTP/1.1 405 Method not allowed\n\n', 405)
     return ('HTTP/1.1 200 OK \n\n', 200)
-
+#Функция, генерирующая контент ответа сервера
 def generate_content(code, url, json_query):
     if code == 404:
         return '<h1>404</h1><p>Not found</p>'
@@ -99,7 +99,7 @@ def generate_content(code, url, json_query):
         return URLS[url][0](query)
     
     return URLS[url][0]()
-
+#Функция, генерирующая полный ответа сервера (заголовок+тело)
 def generate_response(request):
     method, url, json_query = parse_request(request)
     headers, code = generate_headers(method, url)
