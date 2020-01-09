@@ -9,7 +9,6 @@ def run(ip='localhost', port=5000):
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) #переиспользовать предыдущий адрес без таймаута
     server_socket.bind((ip,port))
     server_socket.listen()
-
     while True:
         client_socket, client_addr = server_socket.accept()
         request = client_socket.recv(2048)

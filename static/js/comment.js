@@ -1,6 +1,6 @@
 let $errMsg = document.querySelector('.error-message');
 let $succMsg = document.querySelector('.success-message');
-
+//получить список городов в зависимомти от региона
 const getCitiesByRegion = async function($region){
     let selectedRegionId = $region.options[$region.selectedIndex].value;
     const resp = await fetch('/cities', {
@@ -17,7 +17,7 @@ const getCitiesByRegion = async function($region){
     }
     return options
 }
-
+//дополнительная валидация формы через JS
 const doValidate = (data)=>{
     const required = ['last-name','name','comment'];
     const rePhone = /^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$/;
@@ -45,9 +45,8 @@ const doValidate = (data)=>{
     }
     return true
 }
-
+//очистка формы от предыдущих сообщений
 const clearErr = ()=>{
-    ///
     $errMsg.classList.add('d-none');
     $succMsg.classList.add('d-none');
     let errInputs = document.querySelectorAll('.error-input');
@@ -55,7 +54,7 @@ const clearErr = ()=>{
         elem.classList.remove('error-input');
     }
 }
-
+//добавление коммента
 const addComment = async function(data){
     data = JSON.stringify(data);
     console.log(data);

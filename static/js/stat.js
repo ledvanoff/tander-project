@@ -1,9 +1,4 @@
-// Listen for click on the document
-/* <a href="#content-1" class="accordion-toggle">Show more 1</a>
-<div class="accordion-content" id="content-1">
-  Content goes here...
-</div> */
-
+//рендеринг итоговой таблицы
 const createTable = (jsonify)=>{
 
     let thead = `<tr><th>Регион</th><th>Всего комментариев</th></tr>`;

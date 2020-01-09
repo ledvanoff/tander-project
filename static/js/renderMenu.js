@@ -1,3 +1,5 @@
+//рендеринг топ-меню
+
 const brandName = 'TANDER';
 const brandLink = '#';
 

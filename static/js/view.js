@@ -1,3 +1,4 @@
+//рендеринг итоговой таблицы
 const createTable = (jsonify)=>{
     ths='';
     for (const [key, value] of Object.entries(jsonify[0])) {
@@ -43,7 +44,6 @@ window.onload = async function() {
 
     window.onclick = async (e)=>{
         if(e.target.className.indexOf("delete-comment")>-1){
-            // console.log('Got it!');
                 let id = e.target.value;
                 let delResult = await deleteComment(id);
                 console.log(delResult);
